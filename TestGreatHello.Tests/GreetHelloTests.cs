@@ -43,5 +43,19 @@ namespace TestGreatHello.Tests
             Assert.AreEqual("Hello, Oussama and Nicola." , actual);
             Assert.Pass("vi ho salutato entrambi");
         }
+
+        [Test]
+        public void ShoulBeMoreNames()
+        {
+            var actual= _sut.GreetHello("Gino", "Pino", "Rino", "Vino");
+            Assert.AreEqual("Hello, Gino, Pino, Rino and Vino.", actual);
+        }
+
+        [Test]
+        public void ShoulBeMixed()
+        {
+            var actual = _sut.GreetHello("Gino", "Pino", "RINO", "Vino");
+            Assert.AreEqual("Hello, Gino, Pino and Vino. AND HELLO RINO!",actual);
+        }
     }
 }
