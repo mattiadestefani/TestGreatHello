@@ -1,3 +1,4 @@
+using System.Net.NetworkInformation;
 using NUnit.Framework;
 
 namespace TestGreatHello.Tests
@@ -56,6 +57,13 @@ namespace TestGreatHello.Tests
         {
             var actual = _sut.GreetHello("Gino", "Pino", "RINO", "Vino");
             Assert.AreEqual("Hello, Gino, Pino and Vino. AND HELLO RINO!",actual);
+        }
+
+        [Test]
+        public void ShoulContainComma()
+        {
+            var actual = _sut.GreetHello("Gino", "Pino", "Rino, Vino");
+            Assert.AreEqual("Hello, Gino, Pino, Rino and Vino.",actual);
         }
     }
 }
