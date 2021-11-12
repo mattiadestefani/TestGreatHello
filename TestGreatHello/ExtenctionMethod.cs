@@ -9,5 +9,6 @@ namespace TestGreatHello
     public static class ExtenctionMethod
     {
         public static bool IsUpper(this string name) => name.All(char.IsUpper);
+        public static bool IsLover(this string name) => name.All(char.IsLower);
     }
 }

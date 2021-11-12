@@ -1,16 +1,19 @@
+
 using System.Net.NetworkInformation;
 using NUnit.Framework;
+using TestGreatHello.Ioc;
 
 namespace TestGreatHello.Tests
 {
     public class GreetHelloTests
     {
+        //private IHandler _sut;
         private IGreetHello _sut;
 
         [SetUp]
         public void Setup()
         {
-            _sut = new Greet();
+            _sut = Container.GetService<IGreetHello>();
         }
 
         [Test]
@@ -70,6 +73,13 @@ namespace TestGreatHello.Tests
         {
             var actual = _sut.GreetHello("Gino", "Pino", "\"Rino, Vino\"", "Ella");
             Assert.AreEqual("Hello, Gino, Pino, Ella and Rino, Vino.", actual);
+        }
+
+        [Test]
+        public void sandbox()
+        {
+            var actual = _sut.GreetHello("GINO", "\"Vino, Rino\"");
+            Assert.Pass(actual);
         }
     }
 }
