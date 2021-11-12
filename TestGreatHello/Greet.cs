@@ -15,10 +15,6 @@ namespace TestGreatHello
             var escapeName = comma?.Where(x => x.Contains(escape)).ToArray();
             names = names?.Except(comma).ToArray();
             comma = comma?.Except(escapeName).ToArray();
-            /*if (comma != null && comma.Any())
-                comma.Concat(EraseEscape(escape, escapeName));
-            else
-                comma = EraseEscape(escape, escapeName);*/
             return names?.Concat(comma.SelectMany(x => x.Split(sign))).Concat(EraseEscape(escape,escapeName)).ToArray();
         }
 
