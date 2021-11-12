@@ -69,7 +69,7 @@ namespace TestGreatHello.Tests
         public void ShouldContainEscape()
         {
             var actual = _sut.GreetHello("Gino", "Pino", "\"Rino, Vino\"", "Ella");
-            Assert.AreEqual("Hello, Gino, Pino, Ella, Rino and Vino.", actual);
+            Assert.AreEqual("Hello, Gino, Pino, Ella and Rino, Vino.", actual);
         }
     }
 }

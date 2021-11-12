@@ -6,7 +6,7 @@ namespace TestGreatHello
     {
         private static string[] EraseEscape(string escape,string[] names)
         {
-            return names?.Select(x => x.Replace(escape, "")).ToArray();
+            return names?.Select(x => x.Replace(escape, string.Empty)).ToArray();
         }
 
         private static string[] SplitComma(string sign, string[] names,string escape)
@@ -15,11 +15,11 @@ namespace TestGreatHello
             var escapeName = comma?.Where(x => x.Contains(escape)).ToArray();
             names = names?.Except(comma).ToArray();
             comma = comma?.Except(escapeName).ToArray();
-            if (comma != null && comma.Any())
+            /*if (comma != null && comma.Any())
                 comma.Concat(EraseEscape(escape, escapeName));
             else
-                comma = EraseEscape(escape, escapeName);
-            return names?.Concat(comma.SelectMany(x => x.Split(sign))).ToArray();
+                comma = EraseEscape(escape, escapeName);*/
+            return names?.Concat(comma.SelectMany(x => x.Split(sign))).Concat(EraseEscape(escape,escapeName)).ToArray();
         }
 
         public string GreetHello(params string[] names)
