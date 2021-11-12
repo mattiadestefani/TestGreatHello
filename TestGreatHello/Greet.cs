@@ -8,13 +8,14 @@ namespace TestGreatHello
         {
             return names?.Select(x => x.Replace(escape, "")).ToArray();
         }
+
         private static string[] SplitComma(string sign, string[] names,string escape)
         {
             var comma = names?.Where(x => x.Contains(sign)).ToArray();
             var escapeName = comma?.Where(x => x.Contains(escape)).ToArray();
             names = names?.Except(comma).ToArray();
             comma = comma?.Except(escapeName).ToArray();
-            if (comma.Any())
+            if (comma != null && comma.Any())
                 comma.Concat(EraseEscape(escape, escapeName));
             else
                 comma = EraseEscape(escape, escapeName);
@@ -23,9 +24,10 @@ namespace TestGreatHello
 
         public string GreetHello(params string[] names)
         {
+            names = SplitComma(", ", names, "\"");
             if (names == null)
                 return "Hello, my friend.";
-            names = SplitComma(", ", names, "\"");
+            
             if (names.Length == 1)
                 return names[0] == names[0].ToUpper() ? $"HELLO {names[0]}!" : $"Hello, {names[0]}.";
 
